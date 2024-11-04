@@ -2,6 +2,7 @@ package com.jh.array;
 
 /**
  * the basic version of Binary Search
+ * @author Johnny
  */
 public class BinarySearch {
 
