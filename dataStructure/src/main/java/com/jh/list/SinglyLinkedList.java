@@ -67,7 +67,48 @@ public class SinglyLinkedList {
         recursiveLoop(before, after, node.next);
         after.accept(node.value);
     }
+
+    public void reverseLinkedList(){
+        if(head == null || head.next == null){
+            return;
+        }
+        Node o1 = head;
+        Node o2 = head.next;
+        Node n1 = head;
+        while(o2!=null){
+            o1.next = o2.next;
+            o2.next = n1;
+            n1 = o2;
+            o2 = o1.next;
+        }
+        head = n1;
+    }
+
+    private int recursion(Node p, int n){
+        if(p==null){
+            return 0;
+        }
+        int nth = recursion(p.next, n);
+        System.out.println(p.value + " " +nth);
+        if(nth == n){
+            p.next = p.next.next;
+        }
+        return nth + 1;
+    }
+
     public static void main(String[] args) {
+        SinglyLinkedList linkedList = new SinglyLinkedList();
+        linkedList.addFirst(1);
+        linkedList.addFirst(2);
+        linkedList.addFirst(3);
+        linkedList.addFirst(4);
+        linkedList.addFirst(5);
+        linkedList.loop(System.out::print);
+        linkedList.recursion(linkedList.head,2);
+        linkedList.loop(System.out::print);
+    }
+
+    public static void main1(String[] args) {
         SinglyLinkedList linkedList = new SinglyLinkedList();
         linkedList.addFirst(1);
         linkedList.addFirst(2);
@@ -87,5 +128,15 @@ public class SinglyLinkedList {
         System.out.println(linkedList.get(1));
         System.out.println("=========");
         linkedList.recursiveLoop(System.out::println,System.out::println, linkedList.head);
+        System.out.println("-------------");
+        linkedList.loop((ele) -> {
+            System.out.printf("%d ", ele);
+        });
+        System.out.println();
+        System.out.println("reverse the list-----------");
+        linkedList.reverseLinkedList();
+        linkedList.loop((ele) -> {
+            System.out.printf("%d ", ele);
+        });
     }
 }
