@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SingleLockBlockingQueue<E> implements BlockingQueue<E> {
     private final E[] array;
-    private int head = 0;
+    private int head;
     private int tail = 0;
     private int size = 0;
 
@@ -89,5 +89,11 @@ public class SingleLockBlockingQueue<E> implements BlockingQueue<E> {
 
     private boolean isFull() {
         return size == array.length;
+    }
+
+
+    public static void main(String[] args) {
+        SingleLockBlockingQueue<Integer> queue = new SingleLockBlockingQueue<Integer>(10);
+        System.out.println(queue.head);
     }
 }
